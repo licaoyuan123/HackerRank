@@ -23,6 +23,40 @@ so now you take just half of a 'd' and iterate through second array, looking for
 Meeting such number means that you're currently pointing at index whose value would be in the middle of sorted array, 
 and this is just what you need.
 '''
+#Implementation with out class
+def median(v, d):
+    count = 0
+    if d%2==0:
+        m1 = None
+        m2 = None
+        for i in range(len(v)):
+            count += v[i]
+            if count >= d/2 and m1 is None:
+                m1 = i
+            if count >= d/2 + 1:
+                m2 = i
+                break
+        return (m1 + m2)/2
+    else:
+        for i in range(len(v)):
+            count += v[i]
+            if count > d/2:
+                return i
+    return -1
+
+def activityNotifications(expenditure, d):
+    dq = deque(expenditure[: d])
+    v = [0]*201
+    for n in dq:
+        v[n] += 1
+    count = 0
+    for current in expenditure[d:]:
+        if current >= median(v, d)*2:
+            count += 1
+        v[current] += 1
+        dq.append(current)
+        v[dq.popleft()] -= 1
+    return count
 
 #!/bin/python3
 
