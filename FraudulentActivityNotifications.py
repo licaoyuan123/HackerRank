@@ -1,3 +1,29 @@
+'''
+4 thoughts that may help:
+1.) Counting sort
+2.) A Queue
+3.) Pay attention to the even case.
+4.) Integer division is a blessing and a curse, be careful.
+I really enjoyed this problem :) It's an extremely practical use of the material, a little tricky,
+but very doable with some good thought and planning.
+
+On the input you have an array of frequencies for all possible numbers (0-200) for the gap of values from basic array
+(this gap size is set by d input).
+
+you create another one array and start to build it from frequencies array the following way:
+you sum frequency of every number and frequencies of previous numbers.
+What you really need to understand:
+this second array values will give you last indexes at which every number of frequencies would appear in sorted array.
+
+That is, imagine frequency array [0]2, [1]1, [2]0, [3]4. Building second array would give you [0]2, [1]1+2 =3, [2]0+3=3, [3]3+4=7.
+
+Now, imagine building sorted array from input frequencies array: 0 0 1 3 3 3 3 [0][1][2][3][4][5][6]
+
+so now you take just half of a 'd' and iterate through second array, looking for number which is more huge or equals to d.
+Meeting such number means that you're currently pointing at index whose value would be in the middle of sorted array, 
+and this is just what you need.
+'''
+
 #!/bin/python3
 
 import math
